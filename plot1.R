@@ -6,14 +6,15 @@
 
 #leer los datos
 
-datos <- read.table('household_power_consumption.txt',sep=';',header=TRUE,na.strings='?')
+datos <- read.table('household_power_consumption.txt',sep=';',header=TRUE,na.strings='?',stringsAsFactors=FALSE)
 
-#convertir a clase Date
+#seleccionar solamente fechas de interés
+datos <- datos[datos$Date == '1/2/2007' | datos$Date=='2/2/2007',]
 
-datos$Date = as.Date(datos$Date,'%d/%m/%Y')
+#unir fecha y hora, pasar a formato fecha
 
-#escoger fechas de interés
-datos<-datos[datos$Date== '2007-02-01' | datos$Date=='2007-02-02',]
+datos$Date<-paste(datos$Date,datos$Time)
+datos$Date<-strptime(datos$Date,'%d/%m/%Y %H:%M:%S')
 
 #abrir graphic device
 png('plot1.png', height=480,width=480, unit='px')

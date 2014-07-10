@@ -3,18 +3,19 @@
 # Plot2
 # Lorena Zúñiga Segura ,  July 2014
 
+
+
 #leer los datos
 
-datos <- read.table('household_power_consumption.txt',sep=';',header=TRUE,na.strings='?')
+datos <- read.table('household_power_consumption.txt',sep=';',header=TRUE,na.strings='?',stringsAsFactors=FALSE)
 
-#convertir a clase Date
+#seleccionar solamente fechas de interés
+datos <- datos[datos$Date == '1/2/2007' | datos$Date=='2/2/2007',]
+
+#unir fecha y hora, pasar a formato fecha
 
 datos$Date<-paste(datos$Date,datos$Time)
 datos$Date<-strptime(datos$Date,'%d/%m/%Y %H:%M:%S')
-
-#escoger fechas de interés
- 
-datos<-datos[year(datos$Date)=='2007' & month(datos$Date)=='2' & (day(datos$Date)=='1'| day(datos$Date)=='2'),]
 
 #abrir graphic device
 png('plot2.png', height=480,width=480, unit='px')
