@@ -1,3 +1,13 @@
+## NOTE
+
+ My plots <b>are in the root directory </b> with their corresponding .R files, not in the figure folder.
+
+* plot1.R constructs plot1.png
+* plot2. R constructs plot2.png
+* plot3.R constructs plot3.png
+* plot4.R constructs plot4.png 
+
+
 ## Introduction
 
 This assignment uses data from
